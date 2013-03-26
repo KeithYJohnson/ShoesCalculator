@@ -1,5 +1,5 @@
 Shoes.app :title => "My Amazing Calculator", :width => 240, :height => 240 do
-  stack :margin => 20 do
+  stack :margin => 50 do
     @output = edit_line
     
     flow do
@@ -7,6 +7,11 @@ Shoes.app :title => "My Amazing Calculator", :width => 240, :height => 240 do
         button op do         
           append op
         end
+      end
+
+      button "c" do
+        @output.text = ""
+        @input = ""
       end
       
       button "=" do
@@ -29,8 +34,8 @@ Shoes.app :title => "My Amazing Calculator", :width => 240, :height => 240 do
   # Evaluate the input we've got so far
   #
   def eval_expression
-    @input = eval(@input).to_s
-    @output.text = @input
+    @input = eval(@input).to_s #eval is a method given to us by ruby, even if the numbers are in a string
+    @output.text = @input # when you have three different types of buttons, an equals, a cancel, numbers, then it may work to have a case 
   end
   
 end
